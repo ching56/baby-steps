@@ -60,81 +60,86 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPersonName"
                         android:text="Name"
-                        android:textSize="50sp"/>
+                        android:textSize="50sp" />
                 </RelativeLayout>
 
                 <View
                     android:id="@+id/infView"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
                     android:layout_below="@id/nameView"
+                    android:layout_centerHorizontal="true"
                     android:background="@android:drawable/ic_menu_edit"></View>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/infLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/infView"
                     android:layout_centerHorizontal="true"
-                    android:orientation="horizontal"
                     android:padding="20dp">
+
+                    <View
+                        android:id="@+id/catalogLine"
+                        android:layout_width="2dp"
+                        android:layout_height="150dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="#B2EBF2" />
 
                     <LinearLayout
                         android:id="@+id/catalog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/catalogLine"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:padding="4dp"
                             android:text="Gender"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="birthday"
+                            android:padding="4dp"
+                            android:text="Birthday"
+                            android:textSize="18sp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:text="Diaper"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="奶粉"
+                            android:padding="4dp"
+                            android:text="Milk powder"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="尿布"
+                            android:padding="4dp"
+                            android:text="Non-staple food"
                             android:textSize="18sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="食物"
-                            android:textSize="18sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="習慣的診所"
-                            android:textSize="18sp" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="2dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="#B2EBF2"></View>
 
                     <LinearLayout
                         android:id="@+id/content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/catalog"
+                        android:layout_toRightOf="@id/catalogLine"
                         android:orientation="vertical">
 
                         <EditText
@@ -142,7 +147,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
+                            android:padding="4dp"
                             android:text="male"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="18sp" />
 
                         <EditText
@@ -150,7 +157,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
+                            android:padding="4dp"
                             android:text="2016/7/15"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="18sp" />
 
                         <EditText
@@ -158,7 +167,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:text="某牌奶粉"
+                            android:padding="4dp"
+                            android:text="(to be fill)"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="18sp" />
 
                         <EditText
@@ -166,7 +177,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:text="好穿尿布"
+                            android:padding="4dp"
+                            android:text="(to be fill)"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="18sp" />
 
                         <EditText
@@ -174,67 +187,69 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:text="好吃蘋果泥"
+                            android:padding="4dp"
+                            android:text="(to be fill)"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="18sp" />
 
-                        <EditText
-                            android:id="@+id/infEditText6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:text="好診所"
-                            android:textSize="18sp" />
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
-                <View
-                    android:id="@+id/noticeView"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@id/infLayout"
-                    android:background="@android:drawable/ic_menu_info_details"></View>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/noticeLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/noticeView"
+                    android:layout_below="@id/infLayout"
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/noticeCatalog"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="特殊疾病嗎"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="緊急聯絡資"
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
-
                     <View
+                        android:id="@+id/emergencyLine"
                         android:layout_width="2dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="135dp"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#B2EBF2"></View>
 
                     <LinearLayout
+                        android:id="@+id/noticeCatalog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/emergencyLine"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:text="Clinic habits"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:text="Emergency- contact"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:text="Special - Diseases"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/emergencyLine"
                         android:orientation="vertical">
 
                         <EditText
@@ -242,78 +257,66 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
-                            android:text="沒有沒有沒"
+                            android:padding="4dp"
+                            android:text="(to be fill)"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="18sp" />
 
                         <EditText
                             android:id="@+id/noticeEditText2"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="52dp"
                             android:background="@android:color/transparent"
-                            android:text="999"
+                            android:gravity="top"
+                            android:padding="4dp"
+                            android:text="(to be fill)"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/infEditText6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="52dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="top"
+                            android:padding="4dp"
+                            android:text="(to be fill)"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="18sp" />
+
                     </LinearLayout>
-                </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/timelineLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_below="@id/noticeLayout"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
                     android:text="Timeline"
                     android:textSize="25sp" />
+
                 <Button
+                    android:id="@+id/timelineButton"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:layout_alignTop="@id/timelineLabel"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/timelineButton"
                     android:layout_toRightOf="@id/timelineLabel"
-                    android:layout_alignTop="@id/timelineLabel"
-                    android:background="@android:drawable/ic_input_add" />
+                    android:background="@android:drawable/ic_input_add"
+                    android:onClick="addEvent" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <com.example.ching.babysteps.NonScrollListView
+                    android:id="@+id/lsview"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/timelineLabel">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
-
-                        <View
-                            android:layout_width="5dp"
-                            android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:background="@android:color/black" />
-
-                        <View
-                            android:id="@+id/view1"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="7dp"
-                            android:background="@drawable/dot" />
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="2016/7/15 Birthday"
-                        android:padding="20dp"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                </LinearLayout>
+                    android:layout_below="@id/timelineLabel"
+                    android:layout_centerHorizontal="true"></com.example.ching.babysteps.NonScrollListView>
             </RelativeLayout>
 
         </RelativeLayout>
