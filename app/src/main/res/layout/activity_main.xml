@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="16dp">
+    android:orientation="vertical">
 
     <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
     <LinearLayout
@@ -24,7 +23,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="480dp">
+        android:layout_height="530dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -42,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal"
-                    android:padding="15dp">
+                    android:padding="30dp"
+                    >
 
                     <ImageButton
                         android:id="@+id/imageButton"
@@ -316,6 +316,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/timelineLabel"
+                    android:dividerHeight="0dp"
+                    android:divider="@android:color/transparent"
                     android:layout_centerHorizontal="true"></com.example.ching.babysteps.NonScrollListView>
             </RelativeLayout>
 
