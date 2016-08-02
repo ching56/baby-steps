@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     SQLiteImplement database;
     EditText[] textArray = new EditText[8];
     String[] catalogArray = new String[8];
+    EditText nameEditText;
+    ListView listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Attach the adapter to a ListView
         database = new SQLiteImplement(this);
-        ListView listView = (ListView) findViewById(R.id.lsview);
+        listView = (ListView) findViewById(R.id.lsview);
         listView.setAdapter(adapter);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -51,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //do your work here
+
+                        System.out.println("position: "+position);
+                        System.out.println("delete data: "+String.valueOf(Long.valueOf(queryData("DATE",arrays.get(position)))));
+                        database.deleteData(Long.valueOf(queryData("DATE",arrays.get(position))));
                         arrays.remove(position);//where arg2 is position of item you click
                         adapter.notifyDataSetChanged();
                         dialog.dismiss();
@@ -83,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
         textArray[5] = (EditText) findViewById(R.id.noticeEditText1);
         textArray[6] = (EditText) findViewById(R.id.noticeEditText2);
         textArray[7] = (EditText) findViewById(R.id.noticeEditText3);
+        nameEditText = (EditText) findViewById(R.id.editText);
+        nameEditText.setHint("Baby's name");
+        textArray[0].setHint("F/M");
+        textArray[1].setHint("yyyy/mm/dd");
+        textArray[2].setHint("____________");
+        textArray[3].setHint("____________");
+        textArray[4].setHint("____________");
+        textArray[5].setHint("____________");
+        textArray[6].setHint("____________");
+        textArray[7].setHint("____________");
+
 
         catalogArray = new String[8];
         catalogArray[0] = "Gender";
@@ -111,16 +128,40 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        View.OnFocusChangeListener EditTextF = new View.OnFocusChangeListener() {
+
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+
+                    Data D = new Data("NAME", nameEditText.getText().toString(), "", null);
+                    D = database.insertData(D);
+                }
+            }
+        };
+
+        nameEditText.setOnFocusChangeListener(EditTextF);
+
+        //set Foucus listener
         for (int i = 0; i < 8; i++) {
             textArray[i].setOnFocusChangeListener(F);
         }
-        for(int i = 0;i<8;i++){
-            String s = queryData("EVENT",catalogArray[i]);
-            if(!s.equals("")){
+
+        //resotre the data when laugh the app
+        for (int i = 0; i < 8; i++) {
+            String s = queryData("EVENT", catalogArray[i]);
+            if (!s.equals("")) {
                 textArray[i].setText(s);
             }
         }
-
+        String s = queryData("EVENT", "NAME");
+        if (!s.equals("")) {
+            nameEditText.setText(s);
+        }
+        if(getNumberOfEvent()!=0)
+            for(int i = 1;i<=getNumberOfEvent();i++){
+                adapter.add(queryEvent(String.valueOf(i)));
+            }
     }
 
     //function to search database
@@ -134,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     temp = database.getData(i);
                     if (temp.getEvent() != null) {
                         if (temp.getEvent().equals(string)) {
-                            b = 1;
+                            return temp.getDate();
                         }
                     }
                     break;
@@ -142,21 +183,50 @@ public class MainActivity extends AppCompatActivity {
                     temp = database.getData(i);
                     if (temp.getDate() != null) {
                         if (temp.getDate().equals(string)) {
-                            b = 1;
+                            return String.valueOf(temp.getId());
                         }
                     }
                     break;
                 default:
                     return "";
             }
-            if (b == 1) {
-                return  temp.getDate();
+        }
+        if(column.equals("DATE"))
+            return "0";
+        return "";
+    }
+
+    //for timeline event
+    public String queryEvent(String time) {
+        Data temp;
+        for (long i = 1; i <= database.getCount(); i++) {
+            temp = database.getData(i);
+            if(temp.getEvent()!=null)
+            if (temp.getEvent().equals("TIMELINEEVENT")) {
+                if (temp.getTime().equals(time)) {
+                    return temp.getDate();
+                }
             }
         }
         return "";
     }
 
-   //add a event on timeline when button clicked
+    //get the number of event
+    public int getNumberOfEvent() {
+        Data temp;
+        int b = 0;
+        for (long i = 1; i <= database.getCount(); i++) {
+            temp = database.getData(i);
+            if(temp.getEvent() != null)
+            if (temp.getEvent().equals("TIMELINEEVENT")) {
+                b++;
+            }
+        }
+        return b;
+    }
+
+
+    //add a event on timeline when button clicked
     public void addEvent(View view) {
 
         // get prompts.xml view
@@ -185,7 +255,9 @@ public class MainActivity extends AppCompatActivity {
                                 // edit text
                                 //result.setText(userInput.getText());
                                 adapter.add(userInput.getText() + " " + userInput2.getText());
-
+                                int i = getNumberOfEvent() + 1;
+                                Data D = new Data("TIMELINEEVENT", userInput.getText() + " " + userInput2.getText(), String.valueOf(i), null);
+                                D = database.insertData(D);
                             }
                         })
                 .setNegativeButton("Cancel",
