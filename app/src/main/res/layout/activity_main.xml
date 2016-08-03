@@ -1,314 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context="com.example.lulu.babystep.MainActivity"
+    android:background="@drawable/background"
+    >
 
-    <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
-    <LinearLayout
-        android:layout_width="0px"
-        android:layout_height="0px"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
-
-    <!-- :nextFocusUp and :nextFocusLeft have been set to the id of this component
-    to prevent the dummy from receiving focus again -->
-    <AutoCompleteTextView
-        android:id="@+id/autotext"
-        android:layout_width="0px"
-        android:layout_height="0px"
-        android:nextFocusLeft="@id/autotext"
-        android:nextFocusUp="@id/autotext" />
-
-    <ScrollView
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        app:pstsShouldExpand="true"
+        app:pstsTextAllCaps="true"
         android:layout_width="match_parent"
-        android:layout_height="530dp">
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        app:pstsIndicatorColor="#00AAAA"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
-
-                <RelativeLayout
-                    android:id="@+id/nameView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:orientation="horizontal"
-                    android:padding="30dp"
-                    >
-
-                    <EditText
-                        android:id="@+id/editText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPersonName"
-                        android:textAlignment="center"
-                        android:textSize="50sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/infLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/nameView"
-                    android:layout_centerHorizontal="true"
-                    android:padding="20dp">
-
-                    <View
-                        android:id="@+id/catalogLine"
-                        android:layout_width="2dp"
-                        android:layout_height="150dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="#B2EBF2" />
-
-                    <LinearLayout
-                        android:id="@+id/catalog"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@id/catalogLine"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Gender"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Birthday"
-                            android:textSize="18sp" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Diaper"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Milk powder"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Non-staple food"
-                            android:textSize="18sp" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/content"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/catalogLine"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/infEditText1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/infEditText2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/infEditText3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/infEditText4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/infEditText5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/noticeLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/infLayout"
-                    android:layout_centerHorizontal="true"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:id="@+id/emergencyLine"
-                        android:layout_width="2dp"
-                        android:layout_height="135dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="#B2EBF2"></View>
-
-                    <LinearLayout
-                        android:id="@+id/noticeCatalog"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@id/emergencyLine"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Clinic habits"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Emergency- contact"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:text="Special - Diseases"
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/emergencyLine"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/noticeEditText1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/noticeEditText2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="52dp"
-                            android:background="@android:color/transparent"
-                            android:gravity="top"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/noticeEditText3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="52dp"
-                            android:background="@android:color/transparent"
-                            android:gravity="top"
-                            android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/timelineLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/noticeLayout"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="Timeline"
-                    android:textSize="25sp" />
-
-                <Button
-                    android:id="@+id/timelineButton"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignTop="@id/timelineLabel"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/timelineLabel"
-                    android:background="@android:drawable/ic_input_add"
-                    android:onClick="addEvent" />
-
-                <com.example.ching.babysteps.NonScrollListView
-                    android:id="@+id/lsview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/timelineLabel"
-                    android:dividerHeight="0dp"
-                    android:divider="@android:color/transparent"
-                    android:layout_centerHorizontal="true"></com.example.ching.babysteps.NonScrollListView>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_below="@id/lsview"></View>
-            </RelativeLayout>
-
-        </RelativeLayout>
-    </ScrollView>
-
-    <View
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+
         android:layout_alignParentBottom="true"
-        android:background="#B2EBF2"></View>
-</RelativeLayout>
+        android:layout_below="@+id/tabs"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
+
+</RelativeLayout>

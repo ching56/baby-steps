@@ -1,6 +1,5 @@
+package com.example.lulu.babystep;
 
-//SQLiteImplement.java
-package com.example.ching.babysteps;
 
 import android.content.ContentValues;
 import android.content.Context;

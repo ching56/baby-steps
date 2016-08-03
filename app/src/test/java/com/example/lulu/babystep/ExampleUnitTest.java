@@ -1,4 +1,4 @@
-package com.example.ching.babysteps;
+package com.example.lulu.babystep;
 
 import org.junit.Test;
 

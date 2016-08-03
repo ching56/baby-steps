@@ -1,4 +1,4 @@
-package com.example.ching.babysteps;
+package com.example.lulu.babystep;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

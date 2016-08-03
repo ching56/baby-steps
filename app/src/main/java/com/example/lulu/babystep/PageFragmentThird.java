@@ -1,24 +1,29 @@
-package com.example.ching.babysteps;
+package com.example.lulu.babystep;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by lulu on 2016/8/1.
+ */
 
-    final Context context = this;
+
+public class PageFragmentThird extends Fragment {
+    public static final String ARG_PAGE = "ARG_PAGE";
+
+    private int mPage;
+    Context context;
     // Construct the data source
     ArrayList<String> arrays;
     // Create the adapter to convert the array to views
@@ -29,18 +34,37 @@ public class MainActivity extends AppCompatActivity {
     EditText nameEditText;
     ListView listView;
 
+    public static PageFragmentThird newInstance(int page) {
+        Bundle args = new Bundle();
+        args.putInt(ARG_PAGE, page);
+        PageFragmentThird fragment = new PageFragmentThird();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mPage = getArguments().getInt(ARG_PAGE);
+        context = getContext();
 
         arrays = new ArrayList<String>();
-        adapter = new TimeLineAdapter(this, arrays);
+        adapter = new TimeLineAdapter(context, arrays);
 
         // Attach the adapter to a ListView
-        database = new SQLiteImplement(this);
-        listView = (ListView) findViewById(R.id.lsview);
+        database = new SQLiteImplement(context);
+
+    }
+
+    // Inflate the fragment layout we defined above for this fragment
+    // Set the associated text for the title
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_third, container, false);
+        //  TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+        // tvTitle.setText("Fragment #" + mPage);
+
+        listView = (ListView) view.findViewById(R.id.lsview);
         listView.setAdapter(adapter);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -81,15 +105,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         textArray = new EditText[8];
-        textArray[0] = (EditText) findViewById(R.id.infEditText1);
-        textArray[1] = (EditText) findViewById(R.id.infEditText2);
-        textArray[2] = (EditText) findViewById(R.id.infEditText3);
-        textArray[3] = (EditText) findViewById(R.id.infEditText4);
-        textArray[4] = (EditText) findViewById(R.id.infEditText5);
-        textArray[5] = (EditText) findViewById(R.id.noticeEditText1);
-        textArray[6] = (EditText) findViewById(R.id.noticeEditText2);
-        textArray[7] = (EditText) findViewById(R.id.noticeEditText3);
-        nameEditText = (EditText) findViewById(R.id.editText);
+        textArray[0] = (EditText) view.findViewById(R.id.infEditText1);
+        textArray[1] = (EditText) view.findViewById(R.id.infEditText2);
+        textArray[2] = (EditText) view.findViewById(R.id.infEditText3);
+        textArray[3] = (EditText) view.findViewById(R.id.infEditText4);
+        textArray[4] = (EditText) view.findViewById(R.id.infEditText5);
+        textArray[5] = (EditText) view.findViewById(R.id.noticeEditText1);
+        textArray[6] = (EditText) view.findViewById(R.id.noticeEditText2);
+        textArray[7] = (EditText) view.findViewById(R.id.noticeEditText3);
+        nameEditText = (EditText) view.findViewById(R.id.editText);
         nameEditText.setHint("Baby's name");
         textArray[0].setHint("F/M");
         textArray[1].setHint("yyyy/mm/dd");
@@ -162,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
             for(int i = 1;i<=getNumberOfEvent();i++){
                 adapter.add(queryEvent(String.valueOf(i)));
             }
+
+        return view;
     }
 
     //function to search database
@@ -202,11 +228,11 @@ public class MainActivity extends AppCompatActivity {
         for (long i = 1; i <= database.getCount(); i++) {
             temp = database.getData(i);
             if(temp.getEvent()!=null)
-            if (temp.getEvent().equals("TIMELINEEVENT")) {
-                if (temp.getTime().equals(time)) {
-                    return temp.getDate();
+                if (temp.getEvent().equals("TIMELINEEVENT")) {
+                    if (temp.getTime().equals(time)) {
+                        return temp.getDate();
+                    }
                 }
-            }
         }
         return "";
     }
@@ -218,9 +244,9 @@ public class MainActivity extends AppCompatActivity {
         for (long i = 1; i <= database.getCount(); i++) {
             temp = database.getData(i);
             if(temp.getEvent() != null)
-            if (temp.getEvent().equals("TIMELINEEVENT")) {
-                b++;
-            }
+                if (temp.getEvent().equals("TIMELINEEVENT")) {
+                    b++;
+                }
         }
         return b;
     }
@@ -230,7 +256,6 @@ public class MainActivity extends AppCompatActivity {
     public void addEvent(View view) {
 
         // get prompts.xml view
-        Context context = this;
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.prompt, null);
 
@@ -275,21 +300,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //lost focus when click anywhere outside the edittext
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            View v = getCurrentFocus();
-            if (v instanceof EditText) {
-                Rect outRect = new Rect();
-                v.getGlobalVisibleRect(outRect);
-                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
-                    v.clearFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-            }
-        }
-        return super.dispatchTouchEvent(event);
-    }
 }
