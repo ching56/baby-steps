@@ -18,13 +18,14 @@ import com.astuetz.PagerSlidingTabStrip;
 
 public class MainActivity extends AppCompatActivity {
 
+    SampleFragmentPagerAdapter s = new SampleFragmentPagerAdapter(getSupportFragmentManager());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(s);
 
         // Give the PagerSlidingTabStrip the ViewPager
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
@@ -36,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 3;
         private String tabTitles[] = new String[] { "List", "Calendar", "Card" };
-
         public SampleFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+        PageFragmentFirst p1 = PageFragmentFirst.newInstance(0);
+        PageFragmentSecond p2 = PageFragmentSecond.newInstance(1);
+        PageFragmentThird p3 = PageFragmentThird.newInstance(2);
 
         @Override
         public int getCount() {
@@ -51,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
             switch (position) {
                 case 0:
-                    return PageFragmentFirst.newInstance(position);
+                    return p1;
                 case 1:
-                    return PageFragmentSecond.newInstance(position);
+                    return p2;
                 case 2:
-                    return PageFragmentThird.newInstance(position);
+                    return p3;
                 default:
                     return null;
             }
@@ -85,5 +88,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    public void addEvent(View view) {
+        PageFragmentThird p = (PageFragmentThird) s.getItem(2);
+        p.addEvent(view);
     }
 }

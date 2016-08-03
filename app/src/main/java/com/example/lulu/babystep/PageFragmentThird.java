@@ -46,23 +46,29 @@ public class PageFragmentThird extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
-        context = getContext();
+    }
+
+    // Inflate the fragment layout we defined above for this fragment
+    // Set the associated text for the title
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_third, container, false);
+        //  TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+        // tvTitle.setText("Fragment #" + mPage);
 
         arrays = new ArrayList<String>();
         adapter = new TimeLineAdapter(context, arrays);
 
         // Attach the adapter to a ListView
         database = new SQLiteImplement(context);
-
-    }
-
-    // Inflate the fragment layout we defined above for this fragment
-    // Set the associated text for the title
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_third, container, false);
-        //  TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        // tvTitle.setText("Fragment #" + mPage);
 
         listView = (ListView) view.findViewById(R.id.lsview);
         listView.setAdapter(adapter);
@@ -259,8 +265,7 @@ public class PageFragmentThird extends Fragment {
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.prompt, null);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                context);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
