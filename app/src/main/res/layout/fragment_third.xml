@@ -56,7 +56,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPersonName"
                         android:textAlignment="center"
-                        android:textSize="50sp" />
+                        android:textSize="45sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -136,7 +136,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
 
                         <EditText
@@ -145,7 +145,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
 
                         <EditText
@@ -154,7 +154,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
 
                         <EditText
@@ -163,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
 
                         <EditText
@@ -172,7 +172,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
 
 
@@ -241,27 +241,29 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
-
+                        #757575
                         <EditText
                             android:id="@+id/noticeEditText2"
                             android:layout_width="wrap_content"
-                            android:layout_height="52dp"
+                            android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:gravity="top"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:layout_marginTop="12dp"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
 
                         <EditText
                             android:id="@+id/noticeEditText3"
                             android:layout_width="wrap_content"
-                            android:layout_height="52dp"
+                            android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:gravity="top"
+                            android:layout_marginTop="15dp"
                             android:padding="4dp"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="#757575"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -282,20 +284,19 @@
 
                 <Button
                     android:id="@+id/timelineButton"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignTop="@id/timelineLabel"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/timelineLabel"
-                    android:background="@android:drawable/ic_input_add"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_below="@id/timelineLabel"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/plus"
                     android:onClick="addEvent" />
 
                 <com.example.lulu.babystep.NonScrollListView
                     android:id="@+id/lsview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/timelineLabel"
+                    android:layout_below="@id/timelineButton"
                     android:dividerHeight="0dp"
                     android:divider="@android:color/transparent"
                     android:layout_centerHorizontal="true"></com.example.lulu.babystep.NonScrollListView>

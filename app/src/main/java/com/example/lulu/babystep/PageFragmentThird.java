@@ -1,5 +1,6 @@
 package com.example.lulu.babystep;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -53,9 +54,9 @@ public class PageFragmentThird extends Fragment {
 
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.context = context;
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        context = activity;
     }
 
     @Override
@@ -153,8 +154,14 @@ public class PageFragmentThird extends Fragment {
                             break;
                         }
                     }
-                    Data D = new Data(catalogArray[index], textArray[index].getText().toString(), "", null);
-                    D = database.insertData(D);
+                    if(queryData("EVENT",catalogArray[index])=="") {
+                        Data D = new Data(catalogArray[index], textArray[index].getText().toString(), "", null);
+                        D = database.insertData(D);
+                    }else{
+                        Data D = getData(catalogArray[index]);
+                        D.setDate(textArray[index].getText().toString());
+                        database.updateData(D);
+                    }
                 }
             }
         };
@@ -228,6 +235,19 @@ public class PageFragmentThird extends Fragment {
         return "";
     }
 
+    public Data getData(String event) {
+        Data temp;
+        for (long i = 1; i <= database.getCount(); i++) {
+                temp = database.getData(i);
+                if (temp.getEvent() != null) {
+                    if (temp.getEvent().equals(event)) {
+                        return temp;
+                    }
+                }
+        }
+        return null;
+    }
+
     //for timeline event
     public String queryEvent(String time) {
         Data temp;
@@ -260,7 +280,10 @@ public class PageFragmentThird extends Fragment {
 
     //add a event on timeline when button clicked
     public void addEvent(View view) {
-
+        if(context==null) {
+            System.out.println("null context");
+           return;
+        }
         // get prompts.xml view
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.prompt, null);
