@@ -30,7 +30,7 @@ public class showDay extends AppCompatActivity {
     public int month, date, year;
     public int moodMode = 0;
     private int outdoorMode = 0, sleepMode = 0, poopMode = 0, foodMode = 0, milkMode = 0;
-    private String outdoor, sleep, poop, food, milk, mood, other;
+    private String outdoor, sleep, poop, food, milk, mood, other, emailContent;
     private String outdoorTime, sleepTime, foodTime, milkTime, poopTime;
     private TextView txtWakeTime, txtBedTime, setMonth, setDate, txtMilkInfo, txtFoodInfo, txtPoopInfo, txtSleepInfo, txtOutdoorInfo, txtBathInfo, txtOtherInfo;
     private ImageView imgDay, imgNight, imgMilk, imgFood, imgPoop, imgSleep, imgOutdoor, imgBath, imgOther;
@@ -105,10 +105,11 @@ public class showDay extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                getEmailContent(year+"/"+month+"/"+date);
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-                intent.putExtra(Intent.EXTRA_SUBJECT,"Baby data from babySteps");
-                intent.putExtra(Intent.EXTRA_TEXT, "DATA");
+                intent.putExtra(Intent.EXTRA_SUBJECT,year+"/"+month+"/"+date + "  Baby data from babySteps");
+                intent.putExtra(Intent.EXTRA_TEXT, emailContent);
                 if (intent.resolveActivity(showDay.this.getPackageManager()) != null) {
                     startActivity(intent);
                 }
@@ -362,7 +363,7 @@ public class showDay extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-                                milkTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + "  " ;
+                                milkTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + " " ;
                                 txtMilkInfo.setText(milkTime);
                                 milkMode++;
                             }
@@ -411,7 +412,7 @@ public class showDay extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-                                milkTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + "  " ;
+                                milkTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + " " ;
                                 txtMilkInfo.setText(milk+milkTime);
                                 milkMode = 1;
                             }
@@ -439,7 +440,7 @@ public class showDay extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-                                foodTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + "  " ;
+                                foodTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + " " ;
                                 txtFoodInfo.setText(foodTime);
                                 foodMode++;
                             }
@@ -491,7 +492,7 @@ public class showDay extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-                                foodTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + "  " ;
+                                foodTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + " " ;
                                 txtFoodInfo.setText(food+foodTime);
                                 foodMode=1;
                             }
@@ -519,7 +520,7 @@ public class showDay extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-                                poopTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + "  " ;
+                                poopTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + " " ;
                                 txtPoopInfo.setText(poopTime);
                                 poopMode++;
                             }
@@ -571,7 +572,7 @@ public class showDay extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-                                poopTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + "  " ;
+                                poopTime = toZeroZero(hourOfDay) + ":" + toZeroZero(minute) + " " ;
                                 txtPoopInfo.setText(poop+poopTime);
                                 poopMode=1;
                             }
@@ -786,36 +787,36 @@ public class showDay extends AppCompatActivity {
                     else if (temp.getEvent().equals("milk"))
                     {
                         if (milk!=null)
-                            milk = milk + temp.getTime()  + temp.getMark();
+                            milk = milk + temp.getTime() + temp.getMark() + "\n";
                         else
-                            milk = temp.getTime()  + temp.getMark();
+                            milk = temp.getTime()  + temp.getMark() + "\n";
                         txtMilkInfo.setText(milk);
                     }
 
                     else if (temp.getEvent().equals("food"))
                     {
                         if (food!=null)
-                            food = food + temp.getTime()  + temp.getMark();
+                            food = food + temp.getTime()  + temp.getMark() + "\n";
                         else
-                            food = temp.getTime()  + temp.getMark();
+                            food = temp.getTime()  + temp.getMark() + "\n";
                         txtFoodInfo.setText(food);
                     }
 
                     else if (temp.getEvent().equals("stool"))
                     {
                         if (poop!=null)
-                            poop = poop + temp.getTime()  + temp.getMark();
+                            poop = poop + temp.getTime()  + temp.getMark() + "\n";
                         else
-                            poop = temp.getTime()  + temp.getMark();
+                            poop = temp.getTime()  + temp.getMark() + "\n";
                         txtPoopInfo.setText(poop);
                     }
 
                     else if (temp.getEvent().equals("nap time"))
                     {
                         if (sleep!=null)
-                            sleep = sleep + temp.getMark();
+                            sleep = sleep + temp.getMark() + "\n";
                         else
-                            sleep = temp.getMark();
+                            sleep = temp.getMark() + "\n";
                         txtSleepInfo.setText(sleep);
                     }
 
@@ -832,9 +833,9 @@ public class showDay extends AppCompatActivity {
                     else if (temp.getEvent().equals("outdoor"))
                     {
                         if (outdoor!=null)
-                            outdoor = outdoor + temp.getMark();
+                            outdoor = outdoor + temp.getMark() + "\n";
                         else
-                            outdoor = temp.getMark();
+                            outdoor = temp.getMark() + "\n";
                         txtOutdoorInfo.setText(outdoor);
                     }
 
@@ -859,6 +860,115 @@ public class showDay extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void getEmailContent (String Date)
+    {
+        Data temp;
+        String mailMood = null;
+        String mailWakeTime = null;
+        String mailSleepTime = null;
+        String mailMilk = null;
+        String mailFood = null;
+        String mailPoop = null;
+        String mailSleep = null;
+        String mailOutdoor = null;
+        String mailBathInfo = null;
+        String mailOther = null;
+
+        emailContent = year+"/"+month+"/"+date +"\n";
+
+        for (long i = 1; i <= database.getCount(); i++) {
+            temp = database.getData(i);
+            if (temp.getDate() != null) {
+                if (temp.getDate().equals(Date)) {
+                    if (temp.getEvent().equals("mood"))
+                        mailMood = "\nMood: " + temp.getMark() + "\n";
+
+                    else if (temp.getEvent().equals("wake up time"))
+                        mailWakeTime = "\nWake up time: " + temp.getMark() + "\n";
+
+                    else if (temp.getEvent().equals("bed time"))
+                        mailSleepTime = "\nBed time: " + temp.getMark() + "\n";
+
+                    else if (temp.getEvent().equals("milk"))
+                    {
+                        if (mailMilk!=null)
+                            mailMilk = mailMilk + temp.getTime()  + temp.getMark() + "\n";
+                        else
+                            mailMilk = "\nMilk :\n" + temp.getTime()  + temp.getMark() + "\n";
+                    }
+                    else if (temp.getEvent().equals("food"))
+                    {
+                        if (mailFood!=null)
+                            mailFood = mailFood + temp.getTime()  + temp.getMark();
+                        else
+                            mailFood = "\nFood:\n" + temp.getTime()  + temp.getMark() + "\n";
+                    }
+
+                    else if (temp.getEvent().equals("stool"))
+                    {
+                        if (mailPoop!=null)
+                            mailPoop = mailPoop + temp.getTime()  + temp.getMark();
+                        else
+                            mailPoop = "\nStool:\n" + temp.getTime()  + temp.getMark() + "\n";
+                    }
+
+                    else if (temp.getEvent().equals("nap time"))
+                    {
+                        if (mailSleep!=null)
+                            mailSleep = mailSleep + temp.getMark();
+                        else
+                            mailSleep = "\nNap time:\n" + temp.getMark() + "\n";
+
+                        mailSleep = "\nNap: "+mailSleep;
+                    }
+
+                    else if (temp.getEvent().equals("outdoor"))
+                    {
+                        if (mailOutdoor!=null)
+                            mailOutdoor = mailOutdoor + temp.getMark();
+                        else
+                            mailOutdoor = "\nOutdoors time:\n" + temp.getMark() + "\n";
+                    }
+
+                    else if (temp.getEvent().equals("bath time"))
+                        mailBathInfo = "Bath time: " + temp.getMark() + "\n";
+
+                    else if (temp.getEvent().equals("other"))
+                    {
+                        if (mailOther!=null)
+                            mailOther = mailOther + temp.getMark();
+                        else
+                            mailOther = "\nOthers:\n" + temp.getMark() + "\n";
+                    }
+                }
+            }
+        }
+
+        if (mailMood!=null)
+            emailContent = emailContent + mailMood;
+        if (mailWakeTime!=null)
+            emailContent = emailContent + mailWakeTime;
+        if (mailSleepTime!=null)
+            emailContent = emailContent + mailSleepTime;
+        if (mailMilk!=null)
+            emailContent = emailContent + mailMilk;
+        if (mailFood!=null)
+            emailContent = emailContent + mailFood;
+        if (mailPoop!=null)
+            emailContent = emailContent + mailPoop;
+        if (mailSleep!=null)
+            emailContent = emailContent + mailSleep;
+        if (mailOutdoor!=null)
+            emailContent = emailContent + mailOutdoor;
+        if (mailBathInfo!=null)
+            emailContent = emailContent + mailBathInfo;
+        if (mailOther!=null)
+            emailContent = emailContent + mailOther;
+
+        emailContent = emailContent + "\n\n  --- babySteps Team\n";
+        return;
     }
 
 
