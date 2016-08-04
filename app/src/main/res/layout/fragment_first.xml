@@ -1,15 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:text="First "
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/baby"
+    android:orientation="vertical">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="45dp"/>
-
-
-</LinearLayout>
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:onClick="pickDate"
+                android:text="FIND DATE"/>
+            <RelativeLayout
+                android:id="@+id/first"
+                android:layout_width="350dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="120dp"
+                android:background="@drawable/view"
+                android:onClick="onClick1">
+                <TextView
+                    android:id="@+id/firstmonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="JUL"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/firstdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/firstmonth"
+                    android:layout_marginLeft="28dp"
+                    android:text="25"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="30dp"
+                    android:text="TODAY"
+                    android:textSize="30sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/second"
+                android:layout_width="350dp"
+                android:layout_height="110dp"
+                android:layout_below="@+id/first"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/view"
+                android:onClick="onClick2">
+                <TextView
+                    android:id="@+id/secondmonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="JUL"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/seconddate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/secondmonth"
+                    android:layout_marginLeft="28dp"
+                    android:text="25"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/third"
+                android:layout_width="350dp"
+                android:layout_height="110dp"
+                android:layout_below="@+id/second"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/view"
+                android:onClick="onClick3">
+                <TextView
+                    android:id="@+id/thirdmonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="JUL"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/thirddate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/thirdmonth"
+                    android:layout_marginLeft="28dp"
+                    android:text="25"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/fourth"
+                android:layout_width="350dp"
+                android:layout_height="110dp"
+                android:layout_below="@+id/third"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/view"
+                android:onClick="onClick4">
+                <TextView
+                    android:id="@+id/fourmonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="JUL"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/fourdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fourmonth"
+                    android:layout_marginLeft="28dp"
+                    android:text="25"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/five"
+                android:layout_width="350dp"
+                android:layout_height="110dp"
+                android:layout_below="@+id/fourth"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/view"
+                android:onClick="onClick5">
+                <TextView
+                    android:id="@+id/fivemonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="JUL"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/fivedate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fivemonth"
+                    android:layout_marginLeft="28dp"
+                    android:text="25"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

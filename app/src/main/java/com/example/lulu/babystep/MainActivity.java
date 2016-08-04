@@ -1,7 +1,9 @@
 package com.example.lulu.babystep;
 
 
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,9 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.astuetz.PagerSlidingTabStrip;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-        final int PAGE_COUNT = 3;
-        private String tabTitles[] = new String[] { "List", "Calendar", "Card" };
+        final int PAGE_COUNT = 2;
+        private String tabTitles[] = new String[] { "List", "Card" };
         public SampleFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -56,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return p1;
                 case 1:
-                    return p2;
-                case 2:
                     return p3;
                 default:
                     return null;
@@ -93,5 +96,129 @@ public class MainActivity extends AppCompatActivity {
     public void addEvent(View view) {
         PageFragmentThird p = (PageFragmentThird) s.getItem(2);
         p.addEvent(view);
+    }
+
+    public void onClick1(View v) {
+        Calendar temp = Calendar.getInstance();
+        int PassYear = temp.get(Calendar.YEAR);
+        int PassMonth = temp.get(Calendar.MONTH) + 1;
+        int PassDate = temp.get(Calendar.DAY_OF_MONTH);
+
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, showDay.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Year", PassYear);
+        bundle.putInt("Month", PassMonth);
+        bundle.putInt("Date", PassDate);
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+        return;
+    }
+    public void onClick2(View v) {
+        Calendar temp = Calendar.getInstance();
+        temp.add(Calendar.DATE, -1);
+        int PassYear = temp.get(Calendar.YEAR);
+        int PassMonth = temp.get(Calendar.MONTH);
+        int PassDate = temp.get(Calendar.DAY_OF_MONTH);
+
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, showDay.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Year", PassYear);
+        bundle.putInt("Month", PassMonth+1);
+        bundle.putInt("Date", PassDate);
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+        return;
+    }
+    public void onClick3(View v) {
+        Calendar temp = Calendar.getInstance();
+        temp.add(Calendar.DATE, -2);
+        int PassYear = temp.get(Calendar.YEAR);
+        int PassMonth = temp.get(Calendar.MONTH);
+        int PassDate = temp.get(Calendar.DAY_OF_MONTH);
+
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, showDay.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Year", PassYear);
+        bundle.putInt("Month", PassMonth+1);
+        bundle.putInt("Date", PassDate);
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+        return;
+    }
+    public void onClick4(View v) {
+        Calendar temp = Calendar.getInstance();
+        temp.add(Calendar.DATE, -3);
+        int PassYear = temp.get(Calendar.YEAR);
+        int PassMonth = temp.get(Calendar.MONTH);
+        int PassDate = temp.get(Calendar.DAY_OF_MONTH);
+
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, showDay.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Year", PassYear);
+        bundle.putInt("Month", PassMonth+1);
+        bundle.putInt("Date", PassDate);
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+        return;
+    }
+    public void onClick5(View v) {
+        Calendar temp = Calendar.getInstance();
+        temp.add(Calendar.DATE, -4);
+        int PassYear = temp.get(Calendar.YEAR);
+        int PassMonth = temp.get(Calendar.MONTH);
+        int PassDate = temp.get(Calendar.DAY_OF_MONTH);
+
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, showDay.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Year", PassYear);
+        bundle.putInt("Month", PassMonth+1);
+        bundle.putInt("Date", PassDate);
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+        return;
+    }
+    public void pickDate(View v){
+//        DatePickerFragment d = new DatePickerFragment();
+//        d.show(getFragmentManager(), "datePicker");
+
+        final Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DATE);
+
+        // Launch Time Picker Dialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int PassYear, int PassMonth, int PassDay) {
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, showDay.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("Year", PassYear);
+                        bundle.putInt("Month", PassMonth+1);
+                        bundle.putInt("Date", PassDay);
+
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+
+                    }
+                }, mYear, mMonth,mDay);
+        datePickerDialog.show();
     }
 }
