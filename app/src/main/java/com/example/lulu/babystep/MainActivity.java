@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addEvent(View view) {
-        PageFragmentThird p = (PageFragmentThird) s.getItem(2);
+        PageFragmentThird p = (PageFragmentThird) s.getItem(1);
         p.addEvent(view);
     }
 
